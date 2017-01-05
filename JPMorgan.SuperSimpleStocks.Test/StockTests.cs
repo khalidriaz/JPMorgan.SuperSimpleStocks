@@ -40,5 +40,18 @@ namespace JPMorgan.SuperSimpleStocks.Test
             //Assert
             dividend.Should().BeApproximately(0.2, 0.01);
         }
+
+        [Test]
+        public void Get_P_E_Ratio_Test()
+        {
+            //Arrange
+            var stock = new Stock("POP", 100, 8, StockType.Common);
+
+            //Act
+            var result = stock.PERatio(120);
+
+            //Assert
+            result.Should().BeApproximately(15, 0.1);
+        }
     }
 }

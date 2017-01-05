@@ -46,7 +46,10 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public double PERatio(double marketPrice)
         {
-            throw new NotImplementedException();
+            if (_lastDividend == 0)
+                throw new DivideByZeroException("No dividend paid.");
+
+            return marketPrice / _lastDividend;
         }
     }
 }
