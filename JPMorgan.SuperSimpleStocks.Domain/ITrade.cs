@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace JPMorgan.SuperSimpleStocks.Domain
 {
-    public enum StockType
+    public interface ITrade
     {
-        Common,
-        Preferred
-    }
-
-    public enum TradeType
-    {
-        Buy,
-        Sell
+        double Price { get; }
+        int Quantity { get; }
+        TradeType TradeType { get; }
+        DateTime TimeStamp { get; }
     }
 }
