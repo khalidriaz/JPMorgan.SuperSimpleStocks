@@ -32,6 +32,9 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public double GetVolumeWeightedStockPrice(DateTime startTime, DateTime endTime)
         {
+            Validate.GreaterThan("startTime", startTime, DateTime.MinValue);
+            Validate.GreaterThan("endTime", endTime, DateTime.MinValue);
+
             double volumeWeightedStockPrice = 0,
                 totalTradePrice = 0,
                 totalQuantity = 0;

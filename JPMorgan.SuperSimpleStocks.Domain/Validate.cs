@@ -25,5 +25,17 @@ namespace JPMorgan.SuperSimpleStocks.Domain
             if (!value.Any())
                 throw new ArgumentException("Parameter must contain at least one element.", argumentName);
         }
+
+        public static void GreaterThan(string argumentName, double value, double referencePoint)
+        {
+            if (value <= referencePoint)
+                throw new ArgumentException($"Parameter must be greater than {referencePoint}. Was {value}.", argumentName);
+        }
+
+        public static void GreaterThan(string argumentName, DateTime value, DateTime referencePoint)
+        {
+            if (value <= referencePoint)
+                throw new ArgumentException($"Parameter must be greater than {referencePoint}. Was {value}.", argumentName);
+        }
     }
 }

@@ -18,8 +18,10 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public override double DividendYield(double marketPrice)
         {
-            if (marketPrice == 0)
-                throw new DivideByZeroException();
+            Validate.GreaterThan("marketPrice", marketPrice, 0);
+
+            //if (marketPrice == 0)
+            //    throw new DivideByZeroException();
 
             double dividenYield = ((_fixedDividend / 100) * ParValue) / marketPrice;
             return dividenYield;
