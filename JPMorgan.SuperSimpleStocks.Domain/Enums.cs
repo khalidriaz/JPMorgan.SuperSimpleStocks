@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace JPMorgan.SuperSimpleStocks.Domain
 {
-    public class Class1
+    public enum StockType
     {
+        Common,
+        Preferred
     }
 }
