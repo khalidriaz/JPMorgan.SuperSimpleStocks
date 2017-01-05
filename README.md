@@ -5,6 +5,7 @@ In addition to using C# .Net, Following frameworks are used.
 
 * NUnit
 * Moq
+* FluentAssertion
 
 ### Design decisions.
 
