@@ -11,7 +11,10 @@ namespace JPMorgan.SuperSimpleStocks.Test
         [Test]
         public void Stocks_Object_Is_Not_Null()
         {
-            var stock = new Stock("POP", 100, 8, StockType.Common);
+            //Arrange-Act
+            IStock stock = new StockCommon("POP", 100, 8);
+
+            //Assert
             stock.Should().NotBeNull();
         }
 
@@ -19,7 +22,7 @@ namespace JPMorgan.SuperSimpleStocks.Test
         public void Calculate_Common_Stock_Dividend_Yield_Test()
         {
             //Arrange
-            var stock = new Stock("POP", 100, 8, StockType.Common);
+            IStock stock = new StockCommon("POP", 100, 8);
 
             //Act
             double dividend = stock.DividendYield(10);
@@ -32,7 +35,7 @@ namespace JPMorgan.SuperSimpleStocks.Test
         public void Calculate_Preferred_Stock_Dividend_Yield_Test()
         {
             //Arrange
-            var stock = new Stock("GIN", 100, 8, StockType.Preferred, 2);
+            IStock stock = new StockPreferred("GIN", 100, 8, 2);
 
             //Act
             double dividend = stock.DividendYield(10);
@@ -45,7 +48,7 @@ namespace JPMorgan.SuperSimpleStocks.Test
         public void Get_P_E_Ratio_Test()
         {
             //Arrange
-            var stock = new Stock("POP", 100, 8, StockType.Common);
+            IStock stock = new StockCommon("POP", 100, 8);
 
             //Act
             var result = stock.PERatio(120);
