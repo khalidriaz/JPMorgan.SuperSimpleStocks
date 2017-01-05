@@ -18,7 +18,7 @@ namespace JPMorgan.SuperSimpleStocks.Domain
             Price = tradePrice;
             Quantity = quantity;
             TradeType = tradeType;
-            TimeStamp = timeStamp;//DateTime.UtcNow
+            TimeStamp = timeStamp;
         }
     }
 }

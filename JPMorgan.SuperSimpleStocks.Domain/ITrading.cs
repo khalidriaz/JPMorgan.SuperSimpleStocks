@@ -7,6 +7,6 @@ namespace JPMorgan.SuperSimpleStocks.Domain
     {
         void AddTrade(List<ITrade> trades);
         void AddTrade(ITrade trade);
-        double VolumeWeightedStockPrice(TimeSpan duration);
+        double GetVolumeWeightedStockPrice(DateTime startDateTime, DateTime endDateTime);
     }
 }

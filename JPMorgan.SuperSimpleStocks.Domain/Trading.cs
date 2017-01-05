@@ -18,37 +18,38 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public void AddTrade(List<ITrade> trades)
         {
+            Validate.NotNullOrEmpty<ITrade>("Trades", trades);
+
             trades.ForEach(trade => AddTrade(trade));
         }
 
         public void AddTrade(ITrade trade)
         {
+            Validate.NotNull<ITrade>("Trade", trade);
+            
             _tradeRepository.Add(trade);
         }
 
-        public double VolumeWeightedStockPrice(TimeSpan duration)
+        public double GetVolumeWeightedStockPrice(DateTime startTime, DateTime endTime)
         {
-            var trades = _tradeRepository.GetAll();
-
-            var endTime = DateTime.UtcNow;
-            var startTime = endTime - duration;
-
             double volumeWeightedStockPrice = 0,
                 totalTradePrice = 0,
                 totalQuantity = 0;
 
-            if (trades == null)
-                throw new ArgumentNullException();
+            var trades = _tradeRepository.GetAll();
 
-            trades.Where(x => x.TimeStamp >= startTime && x.TimeStamp <= endTime)
-                .ToList().ForEach(trade =>
-                {
-                    totalTradePrice += (trade.Price * trade.Quantity);
-                    totalQuantity += trade.Quantity;
-                });
+            if (trades != null)
+            {
+                trades.Where(x => x.TimeStamp >= startTime && x.TimeStamp <= endTime)
+                    .ToList().ForEach(trade =>
+                    {
+                        totalTradePrice += (trade.Price * trade.Quantity);
+                        totalQuantity += trade.Quantity;
+                    });
 
-            if (totalQuantity > 0)
-                volumeWeightedStockPrice = totalTradePrice / totalQuantity;
+                if (totalQuantity > 0)
+                    volumeWeightedStockPrice = totalTradePrice / totalQuantity;
+            }
 
             return volumeWeightedStockPrice;
         }

@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 namespace JPMorgan.SuperSimpleStocks.Domain
 {
-    public enum StockType
-    {
-        Common,
-        Preferred
-    }
-
     public enum TradeType
     {
         Buy,

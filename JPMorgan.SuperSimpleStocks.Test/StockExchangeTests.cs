@@ -34,7 +34,7 @@ namespace JPMorgan.SuperSimpleStocks.Test
         }
 
         [Test]
-        public void Stocks_Object_Is_Not_Null()
+        public void StockExchange_Object_Is_Not_Null()
         {
             _stockExchange.Should().NotBeNull();
         }

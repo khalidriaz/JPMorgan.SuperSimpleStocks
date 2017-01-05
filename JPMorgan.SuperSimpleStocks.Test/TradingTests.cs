@@ -31,7 +31,7 @@ namespace JPMorgan.SuperSimpleStocks.Test
                     new Trade(15, 4, DateTime.UtcNow.AddMinutes(-8), TradeType.Buy),
                     new Trade(28, 9, DateTime.UtcNow.AddMinutes(-10), TradeType.Sell),
                     new Trade(34, 4, DateTime.UtcNow.AddMinutes(-12), TradeType.Sell),
-                    new Trade(43, 5, DateTime.UtcNow.AddMinutes(-15), TradeType.Buy),
+                    new Trade(43, 5, DateTime.UtcNow.AddMinutes(-14), TradeType.Buy),
                     new Trade(27, 7, DateTime.UtcNow.AddMinutes(-16), TradeType.Buy),
                     new Trade(12, 4, DateTime.UtcNow.AddMinutes(-20), TradeType.Sell)
                 });
@@ -48,8 +48,17 @@ namespace JPMorgan.SuperSimpleStocks.Test
         [Test]
         public void Volume_Weighted_Stock_Price_Test()
         {
-            var result = _trading.VolumeWeightedStockPrice(TimeSpan.FromMinutes(15));
-            result.Should().BeApproximately(23.9354, 0.01);
+            //Arrange
+            DateTime startTime, endTime;
+            
+            endTime = DateTime.UtcNow;
+            startTime = endTime.AddMinutes(-15);
+
+            //Act
+            var result = _trading.GetVolumeWeightedStockPrice(startTime, endTime);
+
+            //Assert
+            result.Should().BeApproximately(26.5833, 0.001);
         }
     }
 }
