@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using JPMorgan.SuperSimpleStocks.Domain;
+using NUnit.Framework;
 using System;
 
 namespace JPMorgan.SuperSimpleStocks.Test
@@ -9,7 +11,11 @@ namespace JPMorgan.SuperSimpleStocks.Test
         [Test]
         public void Calculate_Dividend_Yield_Test_Returns()
         {
-            
+            var stock = new Stock();
+            string stockSymbol = "POP";
+            double marketPrice = 10;
+            double dividend = stock.GetDividendYeild(stockSymbol, marketPrice);
+            dividend.Should().BeApproximately(0.8, 0.01);
         }
     }
 }
