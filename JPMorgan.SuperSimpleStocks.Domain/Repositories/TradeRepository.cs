@@ -15,11 +15,13 @@ namespace JPMorgan.SuperSimpleStocks.Domain.Repositories
         }
         public void Add(ITrade trade)
         {
+            Validate.NotNull<ITrade>("trade", trade);
             _list.Add(trade);
         }
 
         public bool Delete(ITrade trade)
         {
+            Validate.NotNull<ITrade>("trade", trade);
             return _list.Remove(trade);
         }
 

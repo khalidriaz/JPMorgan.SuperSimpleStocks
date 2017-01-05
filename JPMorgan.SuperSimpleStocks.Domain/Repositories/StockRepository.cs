@@ -17,11 +17,13 @@ namespace JPMorgan.SuperSimpleStocks.Domain.Repositories
 
         public void Add(IStock stock)
         {
+            Validate.NotNull<IStock>("stock", stock);
             _list.Add(stock);
         }
 
         public bool Delete(IStock stock)
         {
+            Validate.NotNull<IStock>("stock", stock);
             return _list.Remove(stock);
         }
 

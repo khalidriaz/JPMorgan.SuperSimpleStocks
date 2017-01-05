@@ -8,7 +8,7 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 {
     public class Validate
     {
-        public static void NotNull<T>(string argumentName, T value) where T : class
+        public static void NotNull<T>(string argumentName, T value)
         {
             if (value == null)
                 throw new ArgumentNullException(argumentName);
