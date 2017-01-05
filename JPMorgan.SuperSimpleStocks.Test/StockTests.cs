@@ -56,5 +56,18 @@ namespace JPMorgan.SuperSimpleStocks.Test
             //Assert
             result.Should().BeApproximately(15, 0.1);
         }
+
+        [Test]
+        public void Get_P_E_Ratio_Divide_By_Zero_Test()
+        {
+            //Arrange
+            IStock stock = new StockCommon("TEA", 100, 0);
+
+            //Act 
+            TestDelegate testDelegate = () => stock.PERatio(120);
+
+            //Assert
+            Assert.Throws<DivideByZeroException>(testDelegate);
+        }
     }
 }
