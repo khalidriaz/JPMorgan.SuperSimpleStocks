@@ -18,10 +18,17 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public double PERatio(double marketPrice)
         {
-            if (_lastDividend == 0)
-                throw new DivideByZeroException("Invalid dividend value provided for PERatio.");
+            try
+            {
+                if (_lastDividend == 0)
+                    throw new DivideByZeroException("Invalid dividend value provided for PERatio.");
 
-            return marketPrice / _lastDividend;
+                return marketPrice / _lastDividend;
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
         }
 
         public abstract double DividendYield(double marketPrice);

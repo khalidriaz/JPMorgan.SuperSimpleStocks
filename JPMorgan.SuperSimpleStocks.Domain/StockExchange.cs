@@ -25,19 +25,30 @@ namespace JPMorgan.SuperSimpleStocks.Domain
         {
             try
             {
+                Validate.NotNull<IStock>("stock", stock);
+
                 _stockRepository.Add(stock);
             }
             catch (Exception)
             {
-
                 throw;
             }            
         }
 
         public double GetDividendYeild(string stockSymbol, double marketPrice)
         {
-            var stock = _stockRepository.FindBySymbol(stockSymbol);
-            return stock.DividendYield(marketPrice);//validation for market price <= 0
+            try
+            {
+                Validate.GreaterThan("marketPrice", marketPrice, 0);
+                Validate.NotNullOrEmpty("stockSymbol", stockSymbol);
+
+                var stock = _stockRepository.FindBySymbol(stockSymbol);
+                return stock.DividendYield(marketPrice);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public double GetPERatio(string stockSymbol, double marketPrice)
@@ -48,11 +59,10 @@ namespace JPMorgan.SuperSimpleStocks.Domain
                 Validate.NotNullOrEmpty("stockSymbol", stockSymbol);
 
                 var stock = _stockRepository.FindBySymbol(stockSymbol);
-                return stock.PERatio(marketPrice);//validation for market price <= 0
+                return stock.PERatio(marketPrice);
             }
             catch (Exception)
             {
-
                 throw;
             }            
         }
@@ -66,7 +76,6 @@ namespace JPMorgan.SuperSimpleStocks.Domain
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -87,7 +96,6 @@ namespace JPMorgan.SuperSimpleStocks.Domain
             }
             catch (Exception)
             {
-
                 throw;
             }            
         }

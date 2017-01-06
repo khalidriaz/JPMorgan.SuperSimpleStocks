@@ -1,4 +1,6 @@
-﻿namespace JPMorgan.SuperSimpleStocks.Domain
+﻿using System;
+
+namespace JPMorgan.SuperSimpleStocks.Domain
 {
     public class StockPreferred : Stock
     {
@@ -12,13 +14,17 @@
 
         public override double DividendYield(double marketPrice)
         {
-            Validate.GreaterThan("marketPrice", marketPrice, 0);
+            try
+            {
+                Validate.GreaterThan("marketPrice", marketPrice, 0);
 
-            //if (marketPrice == 0)
-            //    throw new DivideByZeroException();
-
-            double dividenYield = ((_fixedDividend / 100) * ParValue) / marketPrice;
-            return dividenYield;
+                double dividenYield = ((_fixedDividend / 100) * ParValue) / marketPrice;
+                return dividenYield;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

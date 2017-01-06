@@ -11,6 +11,12 @@ namespace JPMorgan.SuperSimpleStocks.Domain
             if (value == null)
                 throw new ArgumentNullException(argumentName);
         }
+        
+        public static void NotEmpty<T>(string argumentName, IEnumerable<T> value)
+        {
+            if (!value.Any())
+                throw new ArgumentException("Parameter must contain at least one element.", argumentName);
+        }
 
         public static void NotNullOrEmpty<T>(string argumentName, IEnumerable<T> value)
         {
@@ -26,22 +32,10 @@ namespace JPMorgan.SuperSimpleStocks.Domain
                 throw new ArgumentException("Parameter cannot be empty.", argumentName);
         }
 
-        public static void NotEmpty<T>(string argumentName, IEnumerable<T> value)
-        {
-            if (!value.Any())
-                throw new ArgumentException("Parameter must contain at least one element.", argumentName);
-        }
-
         public static void GreaterThan(string argumentName, double value, double referencePoint)
         {
             if (value <= referencePoint)
-                throw new ArgumentException($"Parameter must be greater than {referencePoint}. Was {value}.", argumentName);
-        }
-
-        public static void GreaterThan(string argumentName, DateTime value, DateTime referencePoint)
-        {
-            if (value <= referencePoint)
-                throw new ArgumentException($"Parameter must be greater than {referencePoint}. Was {value}.", argumentName);
+                throw new ArgumentOutOfRangeException($"Parameter must be greater than {referencePoint}. Was {value}.", argumentName);
         }
     }
 }

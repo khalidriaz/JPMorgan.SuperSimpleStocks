@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using FluentAssertions;
 using JPMorgan.SuperSimpleStocks.Domain.Repositories;
-using JPMorgan.SuperSimpleStocks.Domain;
 
 namespace JPMorgan.SuperSimpleStocks.Domain.UnitTest
 {

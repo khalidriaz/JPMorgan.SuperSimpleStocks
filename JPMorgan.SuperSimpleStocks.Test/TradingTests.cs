@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using JPMorgan.SuperSimpleStocks.Domain;
 using JPMorgan.SuperSimpleStocks.Domain.Repositories;
 using Moq;
 using NUnit.Framework;
@@ -17,8 +16,6 @@ namespace JPMorgan.SuperSimpleStocks.Domain.UnitTest
         [SetUp]
         public void SetUp()
         {
-            //Moq framework being used, otherwise this become integration test rather unit test.
-
             _mockTradeRepository = new Mock<ITradeRepository<ITrade>>();
             _mockTradeRepository.Setup(x => x.GetAll()).Returns(new List<ITrade>
                 {
@@ -32,6 +29,7 @@ namespace JPMorgan.SuperSimpleStocks.Domain.UnitTest
                     new Trade(27, 7, DateTime.UtcNow.AddMinutes(-16), TradeType.Buy),
                     new Trade(12, 4, DateTime.UtcNow.AddMinutes(-20), TradeType.Sell)
                 });
+            //Moq framework being used, otherwise this becomes integration test rather unit test.
 
             _trading = new Trading(_mockTradeRepository.Object);
         }

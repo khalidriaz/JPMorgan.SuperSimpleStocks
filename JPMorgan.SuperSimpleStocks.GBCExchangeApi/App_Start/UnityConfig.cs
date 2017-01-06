@@ -15,7 +15,6 @@ namespace JPMorgan.SuperSimpleStocks.GBCExchangeApi
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
-            // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IStockExchange, StockExchange>(new HierarchicalLifetimeManager());
             container.RegisterType<ITrading, Trading>(new HierarchicalLifetimeManager());
 

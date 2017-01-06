@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using JPMorgan.SuperSimpleStocks.Domain;
 using JPMorgan.SuperSimpleStocks.Domain.Repositories;
 using Moq;
 using NUnit.Framework;

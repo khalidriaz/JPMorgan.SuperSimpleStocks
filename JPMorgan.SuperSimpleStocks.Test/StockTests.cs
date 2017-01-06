@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using JPMorgan.SuperSimpleStocks.Domain;
 using NUnit.Framework;
 using System;
 

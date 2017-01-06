@@ -23,9 +23,16 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public void AddTrade(ITrade trade)
         {
-            Validate.NotNull<ITrade>("Trade", trade);
-            
-            _tradeRepository.Add(trade);
+            try
+            {
+                Validate.NotNull<ITrade>("Trade", trade);
+
+                _tradeRepository.Add(trade);
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
         }
 
         public double GetVolumeWeightedStockPrice(TimeSpan? duration)
@@ -61,7 +68,6 @@ namespace JPMorgan.SuperSimpleStocks.Domain
             }
             catch (Exception)
             {
-
                 throw;
             }            
         }
