@@ -28,31 +28,42 @@ namespace JPMorgan.SuperSimpleStocks.Domain
             _tradeRepository.Add(trade);
         }
 
-        public double GetVolumeWeightedStockPrice(DateTime startTime, DateTime endTime)
+        public double GetVolumeWeightedStockPrice(TimeSpan? duration)
         {
-            Validate.GreaterThan("startTime", startTime, DateTime.MinValue);
-            Validate.GreaterThan("endTime", endTime, DateTime.MinValue);
+            if (!duration.HasValue)
+                duration = TimeSpan.FromMinutes(15);
+
+            var endTime = DateTime.UtcNow;
+            var startTime = endTime - duration;
 
             double volumeWeightedStockPrice = 0,
                 totalTradePrice = 0,
                 totalQuantity = 0;
 
-            var trades = _tradeRepository.GetAll();
-
-            if (trades != null)
+            try
             {
-                trades.Where(x => x.TimeStamp >= startTime && x.TimeStamp <= endTime)
-                    .ToList().ForEach(trade =>
-                    {
-                        totalTradePrice += (trade.Price * trade.Quantity);
-                        totalQuantity += trade.Quantity;
-                    });
+                var trades = _tradeRepository.GetAll();
 
-                if (totalQuantity > 0)
-                    volumeWeightedStockPrice = totalTradePrice / totalQuantity;
+                if (trades != null)
+                {
+                    trades.Where(x => x.TimeStamp >= startTime && x.TimeStamp <= endTime)
+                        .ToList().ForEach(trade =>
+                        {
+                            totalTradePrice += (trade.Price * trade.Quantity);
+                            totalQuantity += trade.Quantity;
+                        });
+
+                    if (totalQuantity > 0)
+                        volumeWeightedStockPrice = totalTradePrice / totalQuantity;
+                }
+
+                return volumeWeightedStockPrice;
             }
+            catch (Exception)
+            {
 
-            return volumeWeightedStockPrice;
+                throw;
+            }            
         }
     }
 }

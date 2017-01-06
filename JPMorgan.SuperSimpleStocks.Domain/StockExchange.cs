@@ -16,12 +16,22 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public void AddStock(List<IStock> stocks)
         {
+            Validate.NotNullOrEmpty<IStock>("stocks", stocks);
+
             stocks.ForEach(stock => AddStock(stock));
         }
 
         public void AddStock(IStock stock)
         {
-            _stockRepository.Add(stock);
+            try
+            {
+                _stockRepository.Add(stock);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }            
         }
 
         public double GetDividendYeild(string stockSymbol, double marketPrice)
@@ -32,27 +42,54 @@ namespace JPMorgan.SuperSimpleStocks.Domain
 
         public double GetPERatio(string stockSymbol, double marketPrice)
         {
-            var stock = _stockRepository.FindBySymbol(stockSymbol);
-            return stock.PERatio(marketPrice);//validation for market price <= 0
+            try
+            {
+                Validate.GreaterThan("marketPrice", marketPrice, 0);
+                Validate.NotNullOrEmpty("stockSymbol", stockSymbol);
+
+                var stock = _stockRepository.FindBySymbol(stockSymbol);
+                return stock.PERatio(marketPrice);//validation for market price <= 0
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }            
         }
 
         public double GetAllShareIndex()
         {
-            var stocks = _stockRepository.GetAll().ToList();
-            return GeometricMean(stocks);
+            try
+            {
+                var stocks = _stockRepository.GetAll().ToList();
+                return GeometricMean(stocks);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private double GeometricMean(List<IStock> stocks)
         {
-            double geometricMean = 0;
-            if (stocks.Count > 0)
+            try
             {
-                double productOfStocks = 1;
-                stocks.ForEach(x => productOfStocks *= x.ParValue);
-                var power = 1 / (double)stocks.Count;
-                geometricMean = Math.Pow(productOfStocks, power);
+                double geometricMean = 0;
+                if (stocks.Count > 0)
+                {
+                    double productOfStocks = 1;
+                    stocks.ForEach(x => productOfStocks *= x.ParValue);
+                    var power = 1 / (double)stocks.Count;
+                    geometricMean = Math.Pow(productOfStocks, power);
+                }
+                return geometricMean;
             }
-            return geometricMean;
+            catch (Exception)
+            {
+
+                throw;
+            }            
         }
     }
 }

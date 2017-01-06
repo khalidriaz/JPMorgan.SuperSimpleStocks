@@ -7,6 +7,13 @@ namespace JPMorgan.SuperSimpleStocks.Domain
     {
         void AddTrade(List<ITrade> trades);
         void AddTrade(ITrade trade);
-        double GetVolumeWeightedStockPrice(DateTime startDateTime, DateTime endDateTime);
+
+        /// <summary>
+        /// [duration] is an optional parameter.
+        /// If not provided return value will be based on last 15 minutes.
+        /// </summary>
+        /// <param name="duration">optional parameter</param>
+        /// <returns></returns>
+        double GetVolumeWeightedStockPrice(TimeSpan? duration = null);
     }
 }

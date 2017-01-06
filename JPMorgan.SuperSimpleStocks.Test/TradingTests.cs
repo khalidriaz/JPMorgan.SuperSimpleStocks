@@ -43,33 +43,28 @@ namespace JPMorgan.SuperSimpleStocks.Test
         }
 
         [Test]
-        public void Volume_Weighted_Stock_Price_Test()
+        public void Volume_Weighted_Stock_Price_Without_Sepcifying_TimeSpan_Returns_Result_Test()
         {
             //Arrange
-            DateTime startTime, endTime;
             
-            endTime = DateTime.UtcNow;
-            startTime = endTime.AddMinutes(-15);
-
             //Act
-            var result = _trading.GetVolumeWeightedStockPrice(startTime, endTime);
+            var result = _trading.GetVolumeWeightedStockPrice();
 
             //Assert
             result.Should().BeApproximately(26.5833, 0.001);
         }
 
         [Test]
-        public void Volume_Weighted_Stock_Price_Test_Throws_Exception_On_DateTime_MinValue()
+        public void Volume_Weighted_Stock_Price_Return_Last_15_Minutes_Test()
         {
             //Arrange
-            DateTime startTime = new DateTime();//Initialized with minimum datetime as default.
-            DateTime endTime = new DateTime();
+            var timeSpan = TimeSpan.FromMinutes(15);
 
             //Act
-            TestDelegate testDelegate = () => _trading.GetVolumeWeightedStockPrice(startTime, endTime);
+            var result = _trading.GetVolumeWeightedStockPrice(timeSpan);
 
             //Assert
-            Assert.Throws<ArgumentException>(testDelegate);
+            result.Should().BeApproximately(26.5833, 0.001);
         }
     }
 }
