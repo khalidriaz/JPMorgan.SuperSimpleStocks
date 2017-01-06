@@ -4,7 +4,7 @@ using FluentAssertions;
 using JPMorgan.SuperSimpleStocks.Domain.Repositories;
 using JPMorgan.SuperSimpleStocks.Domain;
 
-namespace JPMorgan.SuperSimpleStocks.Test
+namespace JPMorgan.SuperSimpleStocks.Domain.UnitTest
 {
     [TestFixture]
     class TradeRepositoryTests

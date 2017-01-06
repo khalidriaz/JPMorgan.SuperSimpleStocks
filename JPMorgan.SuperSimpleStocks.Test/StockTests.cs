@@ -3,7 +3,7 @@ using JPMorgan.SuperSimpleStocks.Domain;
 using NUnit.Framework;
 using System;
 
-namespace JPMorgan.SuperSimpleStocks.Test
+namespace JPMorgan.SuperSimpleStocks.Domain.UnitTest
 {
     [TestFixture]
     public class StockTests

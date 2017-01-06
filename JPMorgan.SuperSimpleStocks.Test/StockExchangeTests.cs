@@ -6,7 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
-namespace JPMorgan.SuperSimpleStocks.Test
+namespace JPMorgan.SuperSimpleStocks.Domain.UnitTest
 {
     [TestFixture]
     public class StockExchangeTests
