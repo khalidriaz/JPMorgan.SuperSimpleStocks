@@ -12,12 +12,12 @@ In addition to using C# .Net, Following frameworks are used.
 
 This solution contains `three projects`. Project README file is in the *Solution Items* folder.
 
-* JPMorgan.SuperSimpleStocks.Domain<br />
+* **JPMorgan.SuperSimpleStocks.Domain** <br />
 This project contains core classes for the requirenments.
-* JPMorgan.SuperSimpleStocks.Domain.UnitTest<br />
-This is unit test project for the `Domain` project. To run Nunit tests NUnit Test Adapter 3.6 is required which can be added to the visual studio by downloaded from [here](http://bit.ly/2jioreb).
-* JPMorgan.SuperSimpleStocks.GBCExchangeApi<br />
-This is a basic api for providing interface to run all the required methods. You can use webbrowser or any application like postman to call methods in this webapi. Postman can be downloaded from [here](https://www.getpostman.com/) or added as [chrome extension](http://bit.ly/1K5ZGHG).
+* **JPMorgan.SuperSimpleStocks.Domain.UnitTest** <br />
+This is unit test project for the `Domain` project. It contains unit tests for the Domain project classes. To run NUnit tests NUnit Test Adapter 3.6 is required which can be [added](http://bit.ly/2jioreb) to the visual studio.
+* **JPMorgan.SuperSimpleStocks.GBCExchangeApi** <br />
+This is a basic api for providing interface to run all the required methods. You can use webbrowser or any application like postman to call methods in this webapi. Postman can be [downloaded](https://www.getpostman.com/) or [added](http://bit.ly/1K5ZGHG) as chrome extension.
 
 
 
@@ -50,3 +50,5 @@ GetVolumeWeightedStockPrice (By default price based on trades in past 15 minutes
 ```
 * **Validation**
 	This class contains methods for validation and throws expceptions if valid parameters is not passed to the method in whihc these validation methods being called.
+* **Enums**
+This contains enum for TradType.
