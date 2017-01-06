@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPMorgan.SuperSimpleStocks.Domain", "JPMorgan.SuperSimpleStocks.Domain\JPMorgan.SuperSimpleStocks.Domain.csproj", "{C99F2277-4ADA-435F-B656-07C56A144422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPMorgan.SuperSimpleStocks.Test", "JPMorgan.SuperSimpleStocks.Test\JPMorgan.SuperSimpleStocks.Test.csproj", "{AC373729-263D-4F9C-B0C1-E81636E50C38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPMorgan.SuperSimpleStocks.Domain.UnitTest", "JPMorgan.SuperSimpleStocks.Test\JPMorgan.SuperSimpleStocks.Domain.UnitTest.csproj", "{AC373729-263D-4F9C-B0C1-E81636E50C38}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FFE9CB37-A35F-4BC5-B490-8FEE7D3E6592}"
 	ProjectSection(SolutionItems) = preProject
